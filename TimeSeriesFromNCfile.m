@@ -1,9 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Developed by Débora Rodrigues
+%   LAPMAR (UFPA) and MARETEC (IST)
+%   Date: 15/0/2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear all; close all; clc
 
 %%
 addpath E:\METEOROLOGIA\MERRA\Anos
 
-%visualizing netcdf data
+% visualizing netcdf data
 ncdisp('20100101.nc')
 
 %%
@@ -39,33 +44,33 @@ for K = 1 : num_files
 end
  
 %% 
-%k = number of stations
-%i = number of nc files
+% k = number of stations
+% i = number of nc files
 for k=1:201
     dp=[];
     for i = 1:4383 
-        %find the closest coordinates to your dataset
+        % find the closest coordinates to your dataset
         a= lon (k,1)
         [c index] = min(abs(a-lons{i}))
 
         b= lat (k,1)
         [c index2] = min(abs(b-lats{i}))
         
-        %index and index 2 represent the location of the coordinates in
+        % index and index 2 represent the location of the coordinates in
         %netcdf grid
         
         p = precip{i}(index, index2 ,:); 
         p=reshape(p,[],1);
-        p=sum(p); %we sum because it is precipitation. Use mean for other variables.
+        p=sum(p); % we sum because it is precipitation. Use mean for other variables.
         
         dp(end+1)= p;
     end
-    %add to a matrix and save
+    % add to a matrix and save
     result= reshape(dp,[4383,1]); %4383 days, 1 year
     n = name (k,1)
     names = num2str(n,'%.f')
     writematrix(result, [names '.txt']);  
     
-    %clear these variables to restart for the other station
+    % clear these variables to restart for the other station
     clear dp result 
 end
