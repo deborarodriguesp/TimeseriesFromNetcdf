@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Developed by Débora Rodrigues
 %   LAPMAR (UFPA) and MARETEC (IST)
-%   Date: 15/0/2023
+%   Date: 15/02/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear all; close all; clc
 
