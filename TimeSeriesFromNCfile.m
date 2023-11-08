@@ -6,7 +6,7 @@
 clear all; close all; clc
 
 %%
-addpath E:\METEOROLOGIA\MERRA\Anos
+addpath E:\YOUR\NETCDF\PATH
 
 % visualizing netcdf data
 ncdisp('20100101.nc')
@@ -16,13 +16,13 @@ ncdisp('20100101.nc')
 ncvars = {'time','lat','lon','PRECTOTCORR'}; % follow the file variables order
 
 % nc files directory
-projectdir = 'E:\METEOROLOGIA\MERRA\Anos';
+projectdir = 'E:\YOUR\NETCDF\PATH';
 
 % load stations file information
-load Tocantins_ANA.txt
-name= Tocantins_ANA (:,1);
-lon= Tocantins_ANA (:,2);
-lat= Tocantins_ANA (:,3);
+load stations_file.txt
+name= stations_file (:,1);
+lon= stations_file (:,2);
+lat= stations_file (:,3);
 %%
 % file extension
 dinfo = dir(fullfile(projectdir, '*.nc') );
@@ -40,13 +40,13 @@ for K = 1 : num_files
   time{K} = ncread(this_file, ncvars{1});
   lats{K} = ncread(this_file, ncvars{2});
   lons{K} = ncread(this_file, ncvars{3});
-  precip{K} = (ncread(this_file, ncvars{4})*3600);
+  precip{K} = (ncread(this_file, ncvars{4}));
 end
  
 %% 
 % k = number of stations
 % i = number of nc files
-for k=1:201
+for k=1:200
     dp=[];
     for i = 1:4383 
         % find the closest coordinates to your dataset
